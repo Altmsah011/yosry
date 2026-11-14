@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دعوة خطوبة | يسري ♥ قلب يسري</title>
+
+  <!-- استيراد خطوط عربية فاخرة من Google Fonts: Amiri للعناوين و Cairo للتفاصيل -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- مكتبة Tailwind CSS للتنسيق المتجاوب -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#fff8ef',
+            gold: '#b98243',
+            goldLight: '#d6a568',
+            goldDark: '#96652d',
+            brown: '#633d2d',
+            blush: '#f4c6c5',
+          },
+          fontFamily: {
+            amiri: ['"Amiri"', 'serif'],
+            cairo: ['"Cairo"', 'sans-serif'],
+          },
+          boxShadow: {
+            luxury: '0 20px 55px -15px rgba(99, 61, 45, 0.16)',
+            goldGlow: '0 10px 30px -5px rgba(185, 130, 67, 0.35)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* أنماط مخصصة للخلفية والحركات الناعمة */
+    body {
+      background-color: #fff8ef;
+      color: #633d2d;
+      font-family: 'Cairo', sans-serif;
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(244, 198, 197, 0.28) 0%, transparent 42%),
+        radial-gradient(circle at 85% 25%, rgba(185, 130, 67, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(244, 198, 197, 0.25) 0%, transparent 50%);
+    }
+
+    /* زخرفة خلفية هندسية خفيفة جداً */
+    .bg-arabesque {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg stroke='%23b98243' stroke-width='0.6' stroke-opacity='0.14'%3E%3Cpath d='M30 0L60 30L30 60L0 30z'/%3E%3Ccircle cx='30' cy='30' r='12'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* تدرج ذهبي فاخر للنصوص والأزرار */
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #96652d 0%, #b98243 45%, #d6a568 75%, #8c5a24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .btn-gold-gradient {
+      background: linear-gradient(135deg, #b98243 0%, #c99454 50%, #9b682e 100%);
+      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .btn-gold-gradient:hover {
+      background: linear-gradient(135deg, #c48d4d 0%, #d6a262 50%, #a87336 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px -6px rgba(185, 130, 67, 0.45);
+    }
+
+    .btn-gold-gradient:active {
+      transform: translateY(0);
+    }
+
+    /* حركات الدخول المتدرجة */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulseHeartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.16);
+      }
+    }
+
+    @keyframes floatSlow {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-8px) rotate(3deg);
+      }
+    }
+
+    .animate-fade-up {
+      opacity: 0;
+      animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .delay-100 { animation-delay: 0.12s; }
+    .delay-200 { animation-delay: 0.25s; }
+    .delay-300 { animation-delay: 0.38s; }
+    .delay-400 { animation-delay: 0.52s; }
+    .delay-500 { animation-delay: 0.66s; }
+
+    .heartbeat {
+      display: inline-block;
+      animation: pulseHeartbeat 2.2s ease-in-out infinite;
+    }
+
+    .float-ornament {
+      animation: floatSlow 6s ease-in-out infinite;
+    }
+
+    /* ظهور العناصر عند التمرير */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-arabesque min-h-screen antialiased selection:bg-blush selection:text-brown">
+
+  <!-- حاوية الإشعارات العائمة (بديل أنيق لـ alert) -->
+  <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none w-[92%] max-w-md flex flex-col items-center gap-2"></div>
+
+  <!-- الإطار العام للصفحة -->
+  <main class="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-14">
+
+    <!-- =========================================================
+         1. القسم الافتتاحي (Intro Section)
+         ========================================================= -->
+    <header class="text-center relative pt-4 pb-10 sm:pb-12">
+      <!-- زخرفة علوية ذهبية ووردية -->
+      <div class="animate-fade-up flex justify-center mb-4">
+        <svg class="w-44 sm:w-56 h-12 text-gold float-ornament" viewBox="0 0 240 50" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M10 35C45 35 65 12 120 12C175 12 195 35 230 35" stroke="#b98243" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M35 38C65 38 82 20 120 20C158 20 175 38 205 38" stroke="#f4c6c5" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="120" cy="12" r="3.5" fill="#b98243"/>
+          <circle cx="105" cy="14" r="2" fill="#f4c6c5"/>
+          <circle cx="135" cy="14" r="2" fill="#f4c6c5"/>
+          <path d="M120 26L123 30L120 34L117 30Z" fill="#b98243"/>
+        </svg>
+      </div>
+
+      <!-- عبارة البداية -->
+      <p class="animate-fade-up delay-100 inline-block px-5 py-1.5 rounded-full bg-blush/35 border border-gold/30 text-brown font-semibold text-sm sm:text-base tracking-wide mb-5 shadow-sm">
+        بكل الحب والفرحة
+      </p>
+
+      <!-- العنوان الرئيسي: اسم العريس -->
+      <h1 class="animate-fade-up delay-200 font-amiri font-bold text-6xl sm:text-7xl md:text-8xl text-gold-gradient leading-tight py-1 drop-shadow-sm">
+        يسري
+      </h1>
+
+      <!-- العنوان الفرعي مع الزخرفة القلبية -->
+      <div class="animate-fade-up delay-300 mt-2 mb-6 flex items-center justify-center gap-3 sm:gap-4">
+        <!-- خط زخرفي أيمن -->
+        <span class="h-[1.5px] w-12 sm:w-20 bg-gradient-to-l from-gold to-transparent rounded-full"></span>
+
+        <h2 class="font-amiri font-bold text-2xl sm:text-3xl md:text-4xl text-brown flex items-center gap-2">
+          <span class="text-gold heartbeat text-xl sm:text-2xl">♥</span>
+          <span>قلب يسري</span>
+          <span class="text-gold heartbeat text-xl sm:text-2xl">♥</span>
+        </h2>
+
+        <!-- خط زخرفي أيسر -->
+        <span class="h-[1.5px] w-12 sm:w-20 bg-gradient-to-r from-gold to-transparent rounded-full"></span>
+      </div>
+
+      <!-- زخرفة قلبية وسطية دقيقة -->
+      <div class="animate-fade-up delay-300 flex justify-center mb-5">
+        <svg class="w-28 h-7" viewBox="0 0 120 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 14H44M76 14H116" stroke="#b98243" stroke-width="1" stroke-opacity="0.6"/>
+          <path d="M60 22C60 22 49 14.8 49 8.8C49 5.8 51.3 3.5 54.2 3.5C56.2 3.5 58.1 4.6 60 6.7C61.9 4.6 63.8 3.5 65.8 3.5C68.7 3.5 71 5.8 71 8.8C71 14.8 60 22 60 22Z" fill="#f4c6c5" stroke="#b98243" stroke-width="1.2"/>
+        </svg>
+      </div>
+
+      <!-- عبارة الترحيب -->
+      <p class="animate-fade-up delay-400 font-amiri text-xl sm:text-2xl md:text-[26px] text-brown/95 leading-relaxed max-w-xl mx-auto px-2">
+        نتشرف بدعوتكم لحضور حفل خطوبتنا
+        <span class="block sm:inline text-gold font-bold mx-1">—</span>
+        وبوجودكم تكتمل فرحتنا
+      </p>
+    </header>
+
+    <!-- =========================================================
+         2. بطاقة الدعوة الرئيسية (Main Invitation Card)
+         ========================================================= -->
+    <section class="animate-fade-up delay-500 relative bg-cream/95 backdrop-blur-sm rounded-[2rem] border-2 border-gold/45 shadow-luxury p-5 sm:p-9 md:p-10 overflow-hidden">
+      <!-- إطار داخلي مزدوج رفيع -->
+      <div class="pointer-events-none absolute inset-2.5 sm:inset-3.5 rounded-[1.5rem] border border-gold/25"></div>
+
+      <!-- زوايا زخرفية ذهبية -->
+      <svg class="pointer-events-none absolute top-4 right-4 w-10 h-10 text-gold/60" viewBox="0 0 40 40" fill="none">
+        <path d="M38 2H14C7.37258 2 2 7.37258 2 14V38" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="10" cy="10" r="2.5" fill="#f4c6c5" stroke="currentColor" stroke-width="1"/>
+      </svg>
+      <svg class="pointer-events-none absolute top-4 left-4 w-10 h-10 text-gold/60 -scale-x-100" viewBox="0 0 40 40" fill="none">
+        <path d="M38 2H14C7.37258 2 2 7.37258 2 14V38" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="10" cy="10" r="2.5" fill="#f4c6c5" stroke="currentColor" stroke-width="1"/>
+      </svg>
+
+      <!-- -------------------------------------------------------
+           أ. إطار صورة البوستر الفاخر (مع تصميم افتراضي وإمكانية الاستبدال)
+           ------------------------------------------------------- -->
+      <div class="relative z-10 mb-8 sm:mb-10">
+        <div class="group relative mx-auto max-w-md rounded-2xl p-2 sm:p-2.5 bg-gradient-to-br from-gold/40 via-blush/50 to-gold/40 shadow-md">
+          <div class="relative overflow-hidden rounded-xl bg-cream border border-gold/40 aspect-[4/5] flex items-center justify-center">
+
+            <!-- صورة البوستر المخصصة (تظهر تلقائياً عند وضع رابط صورة في إعدادات الكود) -->
+            <img
+              id="poster-custom-img"
+              src=""
+              alt="بوستر خطوبة يسري وقلب يسري"
+              class="hidden w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+            />
+
+            <!-- التصميم الافتراضي الراقي لبوستر الخطوبة -->
+            <div id="poster-default-art" class="w-full h-full relative flex flex-col items-center justify-between p-6 sm:p-8 text-center bg-gradient-to-b from-[#fffaf3] via-[#fff4e8] to-[#fbe7e4]">
+              <!-- قوس ذهبي زخرفي داخل البوستر -->
+              <div class="absolute inset-3 border border-gold/35 rounded-t-full rounded-b-xl pointer-events-none"></div>
+              <div class="absolute inset-4.5 border border-dashed border-gold/25 rounded-t-full rounded-b-lg pointer-events-none"></div>
+
+              <!-- آية / دعاء علوي -->
+              <div class="relative z-10 pt-4">
+                <p class="font-amiri text-sm sm:text-base text-goldDark/90">
+                  ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا ﴾
+                </p>
+              </div>
+
+              <!-- رسمة خواتم الخطوبة والورود الناعمة (SVG) -->
+              <div class="relative z-10 my-2">
+                <svg class="w-36 h-36 sm:w-44 sm:h-44 mx-auto drop-shadow-sm" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- هالة وردية ناعمة -->
+                  <circle cx="100" cy="100" r="76" fill="#f4c6c5" fill-opacity="0.28"/>
+                  <circle cx="100" cy="100" r="64" stroke="#b98243" stroke-width="0.9" stroke-dasharray="3 3"/>
+
+                  <!-- أغصان أوراق ذهبية -->
+                  <path d="M44 132C32 114 34 86 50 68" stroke="#b98243" stroke-width="1.4" stroke-linecap="round"/>
+                  <path d="M156 132C168 114 166 86 150 68" stroke="#b98243" stroke-width="1.4" stroke-linecap="round"/>
+                  <ellipse cx="37" cy="105" rx="6" ry="3" transform="rotate(-35 37 105)" fill="#d6a568" fill-opacity="0.6"/>
+                  <ellipse cx="41" cy="85" rx="6" ry="3" transform="rotate(-20 41 85)" fill="#f4c6c5"/>
+                  <ellipse cx="163" cy="105" rx="6" ry="3" transform="rotate(35 163 105)" fill="#d6a568" fill-opacity="0.6"/>
+                  <ellipse cx="159" cy="85" rx="6" ry="3" transform="rotate(20 159 85)" fill="#f4c6c5"/>
+
+                  <!-- خاتمان متداخلان -->
+                  <circle cx="84" cy="106" r="26" stroke="#b98243" stroke-width="4.5"/>
+                  <circle cx="84" cy="106" r="23" stroke="#fff8ef" stroke-width="1"/>
+                  <circle cx="116" cy="106" r="26" stroke="#96652d" stroke-width="4.5"/>
+                  <circle cx="116" cy="106" r="23" stroke="#f4c6c5" stroke-width="1"/>
+
+                  <!-- ماسة الخاتم -->
+                  <polygon points="116,71 124,78 116,84 108,78" fill="#fff8ef" stroke="#b98243" stroke-width="1.8"/>
+                  <line x1="108" y1="78" x2="124" y2="78" stroke="#b98243" stroke-width="1"/>
+
+                  <!-- قلب صغير أعلى الخاتمين -->
+                  <path d="M100 62C100 62 91 55.8 91 50.5C91 47.9 93 46 95.4 46C97.1 46 98.7 46.9 100 48.7C101.3 46.9 102.9 46 104.6 46C107 46 109 47.9 109 50.5C109 55.8 100 62 100 62Z" fill="#f4c6c5" stroke="#b98243" stroke-width="1.2"/>
+                </svg>
+              </div>
+
+              <!-- أسماء العروسين داخل البوستر -->
+              <div class="relative z-10 pb-3">
+                <span class="inline-block text-xs sm:text-sm tracking-widest text-gold font-semibold mb-1">
+                  حفل خطوبة
+                </span>
+                <h3 class="font-amiri font-bold text-3xl sm:text-4xl text-brown leading-snug">
+                  يسري
+                  <span class="text-gold mx-1.5 text-2xl">♥</span>
+                  قلب يسري
+                </h3>
+                <p class="mt-2 font-amiri text-sm sm:text-base text-brown/80">
+                  بارك الله لهما وبارك عليهما وجمع بينهما في خير
+                </p>
+              </div>
+            </div>
+
+            <!-- زر اختياري أنيق لمعاينة صورة بوستر خاصة من جهاز المستخدم -->
+            <label
+              for="poster-upload-input"
+              title="يمكنك تجربة وضع صورة البوستر الخاصة بكم هنا"
+              class="cursor-pointer absolute bottom-3 left-3 z-20 bg-cream/90 hover:bg-cream text-brown border border-gold/40 rounded-full px-3 py-1.5 text-xs font-medium shadow-sm backdrop-blur-md transition flex items-center gap-1.5 opacity-85 hover:opacity-100"
+            >
+              <span>🖼️</span>
+              <span>تغيير الصورة</span>
+            </label>
+            <input id="poster-upload-input" type="file" accept="image/*" class="hidden" />
+          </div>
+        </div>
+      </div>
+
+      <!-- -------------------------------------------------------
+           ب. قسم التفاصيل (الموعد، المكان، والداعيان لكم)
+           ------------------------------------------------------- -->
+      <div class="relative z-10 space-y-4 sm:space-y-5">
+
+        <!-- 1. بطاقة موعد الحفل -->
+        <div class="reveal-on-scroll rounded-2xl bg-gradient-to-l from-blush/25 via-cream to-blush/20 border border-gold/35 p-5 sm:p-6 text-center shadow-sm hover:border-gold/60 transition-colors">
+          <div class="inline-flex items-center justify-center gap-2 px-4 py-1 rounded-full bg-gold/15 text-brown font-bold text-base sm:text-lg mb-3">
+            <span>📅</span>
+            <span>موعد الحفل</span>
+          </div>
+          <p id="event-day-date" class="font-amiri font-bold text-2xl sm:text-3xl text-brown mb-1">
+            الجمعة، ٢٧ نوفمبر ٢٠٢٦ م
+          </p>
+          <p id="event-time" class="text-goldDark font-semibold text-base sm:text-lg">
+            في تمام الساعة ٧:٠٠ مساءً
+          </p>
+        </div>
+
+        <!-- 2. بطاقة مكان الحفل -->
+        <div class="reveal-on-scroll rounded-2xl bg-cream border border-gold/35 p-5 sm:p-6 text-center shadow-sm hover:border-gold/60 transition-colors">
+          <div class="inline-flex items-center justify-center gap-2 px-4 py-1 rounded-full bg-gold/15 text-brown font-bold text-base sm:text-lg mb-3">
+            <span>📍</span>
+            <span>مكان الحفل</span>
+          </div>
+          <h3 class="font-amiri font-bold text-2xl sm:text-3xl text-brown mb-1.5">
+            قاعة سيتي مارك للأفراح
+          </h3>
+          <p class="text-brown/85 text-sm sm:text-base font-medium leading-relaxed">
+            طريق كرداسة الجديد – بعد شارع الشباب – الجيزة
+          </p>
+        </div>
+
+        <!-- 3. بطاقة مميزة مباشرة بعد مكان الحفل: والداعيان لكم -->
+        <div class="reveal-on-scroll relative rounded-2xl bg-gradient-to-br from-blush/40 via-[#fff6ec] to-blush/35 border-2 border-gold/55 p-6 sm:p-7 text-center shadow-md overflow-hidden">
+          <!-- شريط زخرفي علوي خفيف -->
+          <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
+
+          <div class="inline-flex items-center justify-center gap-2 px-4 py-1 rounded-full bg-cream/90 border border-gold/40 text-goldDark font-bold text-base sm:text-lg mb-4 shadow-xs">
+            <span>✨</span>
+            <span>والداعيان لكم</span>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-5 font-amiri font-bold text-2xl sm:text-3xl text-brown">
+            <span class="px-2 py-1">الحاج سكر جبريل</span>
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gold/15 text-gold text-lg font-cairo">
+              و
+            </span>
+            <span class="px-2 py-1">الحاج عمرو كيلاني</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- -------------------------------------------------------
+           ج. العداد التنازلي الحي والتفاعلي
+           ------------------------------------------------------- -->
+      <div class="reveal-on-scroll relative z-10 mt-8 sm:mt-10 pt-7 border-t border-gold/25 text-center">
+        <p class="font-amiri text-xl sm:text-2xl text-brown font-bold mb-4">
+          العد التنازلي لفرحتنا
+        </p>
+
+        <div id="countdown-grid" class="grid grid-cols-4 gap-2.5 sm:gap-4 max-w-md mx-auto">
+          <!-- يوم -->
+          <div class="rounded-2xl bg-gradient-to-b from-cream to-blush/30 border border-gold/40 py-3.5 px-2 shadow-sm">
+            <span id="cd-days" class="block font-cairo font-extrabold text-2xl sm:text-4xl text-brown tabular-nums">00</span>
+            <span class="block text-xs sm:text-sm font-semibold text-goldDark mt-1">يوم</span>
+          </div>
+          <!-- ساعة -->
+          <div class="rounded-2xl bg-gradient-to-b from-cream to-blush/30 border border-gold/40 py-3.5 px-2 shadow-sm">
+            <span id="cd-hours" class="block font-cairo font-extrabold text-2xl sm:text-4xl text-brown tabular-nums">00</span>
+            <span class="block text-xs sm:text-sm font-semibold text-goldDark mt-1">ساعة</span>
+          </div>
+          <!-- دقيقة -->
+          <div class="rounded-2xl bg-gradient-to-b from-cream to-blush/30 border border-gold/40 py-3.5 px-2 shadow-sm">
+            <span id="cd-minutes" class="block font-cairo font-extrabold text-2xl sm:text-4xl text-brown tabular-nums">00</span>
+            <span class="block text-xs sm:text-sm font-semibold text-goldDark mt-1">دقيقة</span>
+          </div>
+          <!-- ثانية -->
+          <div class="rounded-2xl bg-gradient-to-b from-cream to-blush/30 border border-gold/40 py-3.5 px-2 shadow-sm">
+            <span id="cd-seconds" class="block font-cairo font-extrabold text-2xl sm:text-4xl text-gold tabular-nums">00</span>
+            <span class="block text-xs sm:text-sm font-semibold text-goldDark mt-1">ثانية</span>
+          </div>
+        </div>
+
+        <!-- رسالة تظهر عند حلول موعد الحفل -->
+        <p id="event-live-msg" class="hidden mt-4 font-amiri text-2xl text-goldDark font-bold">
+          🎉 اليوم نحتفل معاً بخطوبة يسري وقلب يسري — أهلاً وسهلاً بكم! 🎉
+        </p>
+      </div>
+
+      <!-- -------------------------------------------------------
+           د. الأزرار التفاعلية (خرائط جوجل + مشاركة الدعوة)
+           ------------------------------------------------------- -->
+      <div class="reveal-on-scroll relative z-10 mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 sm:gap-4">
+        <!-- زر رئيسي ذهبي: الوصول للقاعة -->
+        <a
+          id="maps-btn"
+          href="https://www.google.com/maps/search/?api=1&query=%D9%82%D8%A7%D8%B9%D8%A9+%D8%B3%D9%8A%D8%AA%D9%8A+%D9%85%D8%A7%D8%B1%D9%83+%D9%84%D9%84%D8%A3%D9%81%D8%B1%D8%A7%D8%AD+%D8%B7%D8%B1%D9%8A%D9%82+%D9%83%D8%B1%D8%AF%D8%A7%D8%B3%D8%A9+%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF+%D8%A7%D9%84%D8%AC%D9%8A%D8%B2%D8%A9"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-gold-gradient flex-1 inline-flex items-center justify-center gap-2.5 text-white font-bold text-base sm:text-lg py-3.5 px-6 rounded-2xl shadow-goldGlow cursor-pointer text-center"
+        >
+          <span>📍</span>
+          <span>الوصول للقاعة (خرائط جوجل)</span>
+        </a>
+
+        <!-- زر ثانوي: مشاركة الدعوة -->
+        <button
+          id="share-btn"
+          type="button"
+          class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2.5 bg-blush/35 hover:bg-blush/55 text-brown border-2 border-gold/50 hover:border-gold font-bold text-base sm:text-lg py-3.5 px-6 rounded-2xl transition-all duration-300 cursor-pointer active:scale-[0.99]"
+        >
+          <span>💌</span>
+          <span>مشاركة الدعوة</span>
+        </button>
+      </div>
+
+      <!-- -------------------------------------------------------
+           هـ. الرسالة الختامية الدافئة والتذييل
+           ------------------------------------------------------- -->
+      <footer class="reveal-on-scroll relative z-10 mt-10 pt-7 border-t border-gold/25 text-center">
+        <!-- زخرفة فاصلة صغيرة -->
+        <div class="flex items-center justify-center gap-2 mb-4 text-gold/70">
+          <span class="h-px w-10 bg-gold/40"></span>
+          <span class="text-sm">✦ ♥ ✦</span>
+          <span class="h-px w-10 bg-gold/40"></span>
+        </div>
+
+        <p class="font-amiri italic font-bold text-xl sm:text-2xl text-brown leading-relaxed mb-5 px-2">
+          "حضوركم يشرفنا ويكتمل به سرورنا.. العاقبة عندكم في المسرات"
+        </p>
+
+        <div class="inline-flex flex-col items-center">
+          <span class="text-xs text-goldDark/80 font-semibold tracking-wider mb-1">مع خالص الحب والتقدير</span>
+          <p class="font-amiri font-bold text-2xl sm:text-3xl text-gold-gradient">
+            يسري ♥ قلب يسري
+          </p>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       البرمجة التفاعلية (تعديل التاريخ بسهولة، العداد، المشاركة)
+       ========================================================= -->
+  <script>
+    /**
+     * ============================================================
+     * إعدادات الدعوة (يمكنك تعديل التاريخ أو رابط البوستر بسهولة من هنا)
+     * ============================================================
+     */
+    const INVITATION_CONFIG = {
+      // موعد الحفل بصيغة ISO (السنة-الشهر-اليومTالساعة:الدقيقة:الثانية)
+      eventDateISO: '2026-11-27T19:00:00',
+
+      // النص المعروض لليوم والتاريخ والساعة
+      displayDayAndDate: 'الجمعة، ٢٧ نوفمبر ٢٠٢٦ م',
+      displayTime: 'في تمام الساعة ٧:٠٠ مساءً',
+
+      // رابط صورة البوستر (اتركه فارغاً "" لاستخدام التصميم الافتراضي الراقي، أو ضع رابط الصورة مباشرة)
+      posterImageUrl: '',
+
+      // بيانات المكان والمشاركة
+      venueName: 'قاعة سيتي مارك للأفراح',
+      venueAddress: 'طريق كرداسة الجديد – بعد شارع الشباب – الجيزة',
+      mapsUrl: 'https://www.google.com/maps/search/?api=1&query=%D9%82%D8%A7%D8%B9%D8%A9+%D8%B3%D9%8A%D8%AA%D9%8A+%D9%85%D8%A7%D8%B1%D9%83+%D9%84%D9%84%D8%A3%D9%81%D8%B1%D8%A7%D8%AD+%D8%B7%D8%B1%D9%8A%D9%82+%D9%83%D8%B1%D8%AF%D8%A7%D8%B3%D8%A9+%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF+%D8%A7%D9%84%D8%AC%D9%8A%D8%B2%D8%A9',
+      hosts: 'الحاج سكر جبريل و الحاج عمرو كيلاني'
+    };
+
+    // تطبيق الإعدادات على عناصر الصفحة
+    document.addEventListener('DOMContentLoaded', () => {
+      const dayDateEl = document.getElementById('event-day-date');
+      const timeEl = document.getElementById('event-time');
+      const customImgEl = document.getElementById('poster-custom-img');
+      const defaultArtEl = document.getElementById('poster-default-art');
+      const uploadInput = document.getElementById('poster-upload-input');
+
+      if (dayDateEl) dayDateEl.textContent = INVITATION_CONFIG.displayDayAndDate;
+      if (timeEl) timeEl.textContent = INVITATION_CONFIG.displayTime;
+
+      // تفعيل صورة البوستر إذا تم وضع رابط لها في الإعدادات
+      if (INVITATION_CONFIG.posterImageUrl && INVITATION_CONFIG.posterImageUrl.trim() !== '') {
+        customImgEl.src = INVITATION_CONFIG.posterImageUrl;
+        customImgEl.onload = () => {
+          customImgEl.classList.remove('hidden');
+          defaultArtEl.classList.add('hidden');
+        };
+        customImgEl.onerror = () => {
+          customImgEl.classList.add('hidden');
+          defaultArtEl.classList.remove('hidden');
+        };
+      }
+
+      // إمكانية معاينة صورة بوستر من الجهاز مباشرة
+      if (uploadInput) {
+        uploadInput.addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (file) {
+            const objectUrl = URL.createObjectURL(file);
+            customImgEl.src = objectUrl;
+            customImgEl.classList.remove('hidden');
+            defaultArtEl.classList.add('hidden');
+            showToast('تم تحديث صورة البوستر بنجاح ✨');
+          }
+        });
+      }
+
+      // تشغيل العداد التنازلي
+      startCountdown();
+
+      // تفعيل حركات الظهور عند التمرير
+      initScrollReveal();
+    });
+
+    /**
+     * دالة العداد التنازلي الحي
+     */
+    function startCountdown() {
+      const targetTime = new Date(INVITATION_CONFIG.eventDateISO).getTime();
+      const daysEl = document.getElementById('cd-days');
+      const hoursEl = document.getElementById('cd-hours');
+      const minutesEl = document.getElementById('cd-minutes');
+      const secondsEl = document.getElementById('cd-seconds');
+      const liveMsgEl = document.getElementById('event-live-msg');
+
+      function updateTimer() {
+        const now = Date.now();
+        const diff = targetTime - now;
+
+        if (isNaN(targetTime) || diff <= 0) {
+          daysEl.textContent = '00';
+          hoursEl.textContent = '00';
+          minutesEl.textContent = '00';
+          secondsEl.textContent = '00';
+          if (liveMsgEl) liveMsgEl.classList.remove('hidden');
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        daysEl.textContent = String(days).padStart(2, '0');
+        hoursEl.textContent = String(hours).padStart(2, '0');
+        minutesEl.textContent = String(minutes).padStart(2, '0');
+        secondsEl.textContent = String(seconds).padStart(2, '0');
+      }
+
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    }
+
+    /**
+     * زر مشاركة الدعوة (نسخ النص + تفاصيل المكان أو المشاركة المباشرة)
+     */
+    const shareBtn = document.getElementById('share-btn');
+    if (shareBtn) {
+      shareBtn.addEventListener('click', async () => {
+        const shareText =
+          `بكل الحب والفرحة 💍✨\n` +
+          `نتشرف بدعوتكم لحضور حفل خطوبة:\n` +
+          `♥ يسري & قلب يسري ♥\n\n` +
+          `📅 الموعد: ${INVITATION_CONFIG.displayDayAndDate} (${INVITATION_CONFIG.displayTime})\n` +
+          `📍 المكان: ${INVITATION_CONFIG.venueName} - ${INVITATION_CONFIG.venueAddress}\n` +
+          `✨ والداعيان لكم: ${INVITATION_CONFIG.hosts}\n\n` +
+          `🗺️ موقع القاعة على الخريطة:\n${INVITATION_CONFIG.mapsUrl}\n\n` +
+          `حضوركم يشرفنا ويكتمل به سرورنا.. العاقبة عندكم في المسرات 🌸`;
+
+        // محاولة استخدام المشاركة الأصلية على الهواتف الذكية أولاً
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: 'دعوة خطوبة | يسري ♥ قلب يسري',
+              text: shareText
+            });
+            showToast('تمت مشاركة الدعوة بكل حب 💌');
+            return;
+          } catch (err) {
+            // في حال ألغى المستخدم نافذة المشاركة أو لم تكن مدعومة بالكامل، ننتقل للنسخ التلقائي
+            if (err && err.name === 'AbortError') return;
+          }
+        }
+
+        // نسخ نص الدعوة إلى الحافظة بطريقة متوافقة مع جميع المتصفحات والإطارات
+        copyTextToClipboard(shareText);
+      });
+    }
+
+    /**
+     * دالة نسخ النص إلى الحافظة مع إظهار إشعار تأكيد أنيق
+     */
+    function copyTextToClipboard(text) {
+      try {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.top = '-9999px';
+        textArea.style.left = '-9999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textArea);
+
+        if (successful) {
+          showToast('تم نسخ نص الدعوة وتفاصيل المكان بنجاح! 💌');
+        } else {
+          showToast('تعذّر النسخ التلقائي، يرجى تحديد النص ونسخه يدوياً.');
+        }
+      } catch (err) {
+        showToast('حدث خطأ أثناء النسخ، يرجى المحاولة مرة أخرى.');
+      }
+    }
+
+    /**
+     * إظهار إشعار تأكيد أنيق في أسفل الشاشة
+     */
+    function showToast(message) {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className =
+        'pointer-events-auto bg-brown text-cream border border-gold/60 px-5 py-3 rounded-2xl shadow-xl text-sm sm:text-base font-semibold flex items-center gap-2.5 transform transition-all duration-300 translate-y-4 opacity-0';
+      toast.innerHTML = `<span class="text-blush text-lg">✦</span><span>${message}</span>`;
+
+      container.appendChild(toast);
+
+      // تفعيل حركة الدخول
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-4', 'opacity-0');
+      });
+
+      // إخفاء الإشعار بعد 3.5 ثوانٍ
+      setTimeout(() => {
+        toast.classList.add('translate-y-4', 'opacity-0');
+        setTimeout(() => {
+          toast.remove();
+        }, 300);
+      }, 3500);
+    }
+
+    /**
+     * تفعيل حركات الظهور الناعمة عند التمرير
+     */
+    function initScrollReveal() {
+      const elements = document.querySelectorAll('.reveal-on-scroll');
+      if (!('IntersectionObserver' in window)) {
+        elements.forEach((el) => el.classList.add('is-visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      elements.forEach((el) => observer.observe(el));
+    }
+  </script>
+</body>
+</html>
